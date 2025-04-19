@@ -1,1 +1,1 @@
-# My training SQL queries
+## My training SQL queries
