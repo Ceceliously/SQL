@@ -99,17 +99,17 @@ WHERE Pass_in_trip.passenger = ANY(
 `15. Выведите идентификатор пассажира Стив Мартин (Steve Martin) и дату и время его прилёта в Лондон (London).`
 ```
 SELECT DISTINCT Pass_in_trip.passenger id, time_in FROM Trip
-	JOIN Pass_in_trip ON Pass_in_trip.trip = Trip.id
+  JOIN Pass_in_trip ON Pass_in_trip.trip = Trip.id
 WHERE Pass_in_trip.passenger = ANY(
-	   SELECT DISTINCT id FROM Passenger
-	     WHERE name = 'Steve Martin' AND town_to = 'London')
+    SELECT DISTINCT id FROM Passenger
+      WHERE name = 'Steve Martin' AND town_to = 'London')
 ```
 
 `19. Определить, кто из членов семьи покупал картошку (potato).`
 ```
 SELECT DISTINCT status FROM FamilyMembers
-	JOIN Payments ON Payments.family_member = FamilyMembers.member_id
-	JOIN Goods ON Goods.good_id = Payments.good
+  JOIN Payments ON Payments.family_member = FamilyMembers.member_id
+  JOIN Goods ON Goods.good_id = Payments.good
 WHERE Goods.good_name = 'potato'
 ```
     
@@ -117,9 +117,9 @@ WHERE Goods.good_name = 'potato'
 ```
 SELECT status, member_name, SUM(unit_price * amount) costs
 FROM FamilyMembers
-	JOIN Payments ON Payments.family_member = FamilyMembers.member_id
-	JOIN Goods ON Goods.good_id = Payments.good
-	JOIN GoodTypes ON GoodTypes.good_type_id = Goods.type
+  JOIN Payments ON Payments.family_member = FamilyMembers.member_id
+  JOIN Goods ON Goods.good_id = Payments.good
+  JOIN GoodTypes ON GoodTypes.good_type_id = Goods.type
 WHERE good_type_name = 'entertainment'
 GROUP BY status, member_name
 ```
