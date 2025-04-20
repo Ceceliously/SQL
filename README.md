@@ -87,6 +87,13 @@ FROM Trip t
 GROUP BY t.id
 ```
 
+`13. Вывести имена людей, у которых есть полный тёзка среди пассажиров.`
+```
+SELECT DISTINCT  name FROM Passenger
+WHERE name IN (SELECT name FROM Passenger p 
+WHERE Passenger.id != p.id)
+```
+
 `14. В какие города летал Bruce Willis.`
 ```
 SELECT town_to FROM Trip
@@ -105,6 +112,14 @@ WHERE Pass_in_trip.passenger = ANY(
       WHERE name = 'Steve Martin' AND town_to = 'London')
 ```
 
+`16. Вывести отсортированный по количеству перелетов (по убыванию) и имени (по возрастанию) список пассажиров, совершивших хотя бы 1 полет.`
+```
+SELECT name, COUNT(Pass_in_trip.trip) count FROM Passenger
+JOIN Pass_in_trip ON Pass_in_trip.passenger = Passenger.id
+GROUP BY name
+ORDER BY count DESC, name
+```
+
 `19. Определить, кто из членов семьи покупал картошку (potato).`
 ```
 SELECT DISTINCT status FROM FamilyMembers
@@ -120,14 +135,14 @@ FROM FamilyMembers
   JOIN Payments ON Payments.family_member = FamilyMembers.member_id
   JOIN Goods ON Goods.good_id = Payments.good
   JOIN GoodTypes ON GoodTypes.good_type_id = Goods.type
+WHERE good_type_name = 'entertainment'
+GROUP BY status, member_name
 ```
 
-`22. Найти имена всех матерей (mother)`
+`22. Найти имена всех матерей (mother).`
 ```
 SELECT member_name FROM FamilyMembers
 WHERE status = 'mother'
 ```
-WHERE good_type_name = 'entertainment'
-GROUP BY status, member_name
-```
+
     
