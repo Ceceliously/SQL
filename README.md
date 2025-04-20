@@ -120,6 +120,13 @@ GROUP BY name
 ORDER BY count DESC, name
 ```
 
+`18. Выведите имя самого старшего человека. Если таких несколько, то выведите их всех.`
+```
+SELECT member_name
+FROM FamilyMembers
+WHERE birthday = (SELECT MIN(birthday) FROM FamilyMembers)
+```
+
 `19. Определить, кто из членов семьи покупал картошку (potato).`
 ```
 SELECT DISTINCT status FROM FamilyMembers
