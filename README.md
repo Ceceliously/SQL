@@ -120,6 +120,13 @@ FROM FamilyMembers
   JOIN Payments ON Payments.family_member = FamilyMembers.member_id
   JOIN Goods ON Goods.good_id = Payments.good
   JOIN GoodTypes ON GoodTypes.good_type_id = Goods.type
+```
+
+`22. Найти имена всех матерей (mother)`
+```
+SELECT member_name FROM FamilyMembers
+WHERE status = 'mother'
+```
 WHERE good_type_name = 'entertainment'
 GROUP BY status, member_name
 ```
