@@ -1,5 +1,7 @@
 # My training SQL queries
 ## SQL_academy_trainer
+https://sql-academy.org/ru/trainer
+
 `1. Вывести имена всех людей, которые есть в базе данных авиакомпаний.`
 ```
 SELECT name
